@@ -166,7 +166,7 @@
       for(let paramId in thisProduct.data.params) {
         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
         const param = thisProduct.data.params[paramId];
-        console.log(paramId, param);
+        //console.log(paramId, param);
 
         
     
@@ -178,23 +178,15 @@
           const option = param.options[optionId];
 
           if(optionSelected){
-            if(option.default == true){
-              price = price + option.price;
-            }
-
-          } else {
-            if(option.default == true) {
-              price = price + option.price;
-            }
+            price += option.price;
           }
 
           // images
 
-          const optionImage = thisProduct.imageWrapper.querySelector('.active');
-          console.log('optionImage', optionImage);
+          const optionImage = thisProduct.imageWrapper.querySelector(`.${paramId}-${optionId}`);
+          //console.log('paramId, optionId: ', paramId, optionId);
           
           if(optionImage){
-            
 
             if(optionSelected){
 
