@@ -23,6 +23,7 @@
       imageWrapper: '.product__images',
       amountWidget: '.widget-amount',
       cartButton: '[href="#add-to-cart"]',
+      
     },
     widgets: {
       amount: {
@@ -64,6 +65,7 @@
       thisProduct.initAccordion();
 
       thisProduct.initOrderForm();
+      thisProduct.initAmountWidget();
       thisProduct.processOrder();
 
 
@@ -96,8 +98,9 @@
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
       thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
-    }
+      thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
 
+    }
 
     initAccordion(){
       const thisProduct = this;
@@ -167,9 +170,7 @@
         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
         const param = thisProduct.data.params[paramId];
         //console.log(paramId, param);
-
-        
-    
+            
         // for every option in this category    (e.g. in toppings, let each topping be inspected...)
         for(let optionId in param.options) {
           const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
@@ -200,23 +201,102 @@
 
           }
 
-          
-
-
-          
         }
       }
+
+      /* multiply price by amount of products */
+      price *= thisProduct.amountWidget.value;
     
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
 
-
-
     }
 
+    initAmountWidget(){
+      const thisProduct = this;
+
+      thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+
+      thisProduct.amountWidgetElem.addEventListener('updated', function(){
+        thisProduct.processOrder();
+      });
+    }
 
   }
 
+  class AmountWidget{
+    constructor(element){
+      const thisWidget = this;
+
+      thisWidget.getElements(element);
+
+      if(thisWidget.input.value) {
+        thisWidget.setValue(thisWidget.input.value);
+      } else {
+        thisWidget.setValue(settings.amountWidget.defaultValue);
+      }
+
+      //thisWidget.setValue(thisWidget.input.value);
+      thisWidget.initActions();
+
+      //console.log('AmountWidget: ', thisWidget);
+      //console.log('constructor arguments: ', element);
+      console.log('thisWidget.value = ', thisWidget.value);
+    }
+
+    getElements(element){
+      const thisWidget = this;
+    
+      thisWidget.element = element;
+      thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
+      thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
+      thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
+    }
+
+    setValue(value){
+      const thisWidget = this;
+      
+      const newValue = parseInt(value);
+
+      if(thisWidget.value !== newValue && !isNaN(newValue) && newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax) {
+        thisWidget.value = newValue;
+        thisWidget.announce();
+      }
+
+      
+      thisWidget.input.value = thisWidget.value; //??
+    }
+
+    initActions(){
+      const thisWidget = this;
+
+      thisWidget.input.addEventListener('change', function(){
+        thisWidget.setValue(thisWidget.input);
+      });
+
+      thisWidget.linkDecrease.addEventListener('click', function(){
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value - 1);
+      });
+
+      thisWidget.linkIncrease.addEventListener('click', function(){
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value + 1);
+      });
+
+    }
+
+    announce(){
+      const thisWidget = this;
+
+      const event = new Event('updated');
+      thisWidget.element.dispatchEvent(event);
+    }
+
+
+
+  }
+  
   const app = {
     initMenu: function(){
       const thisApp = this;
