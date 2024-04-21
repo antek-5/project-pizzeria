@@ -86,6 +86,8 @@
     // CODE ADDED END
   };
 
+  /* *** */
+
   class Product{
     constructor(id, data){
       const thisProduct = this;
@@ -147,7 +149,7 @@
         event.preventDefault();
 
         /* find active product (product that has active class) */
-        const activeProduct = document.querySelector(".active");
+        const activeProduct = document.querySelector(".product.active");
 
         if(activeProduct){
 
@@ -287,29 +289,34 @@
       const thisProduct = this;
     
       const formData = utils.serializeFormToObject(thisProduct.form);
+      console.log(formData);
+
       const params = {};
     
       // for very category (param)
       for(let paramId in thisProduct.data.params) {
-        const param = thisProduct.data.params[paramId];
+        const param = thisProduct.data.params[paramId]; // param is a link to all data about this category (this param)
     
         // create category param in params const eg. params = { ingredients: { name: 'Ingredients', options: {}}}
         params[paramId] = {
           label: param.label,
-          options: {}
-        }
+          options: []
+        };
     
         // for every option in this category
         for(let optionId in param.options) {
-          const option = param.options[optionId];
+          const option = param.options[optionId]; //option is a link to exact option in the data
+
           const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
     
           if(optionSelected) {
-            params[paramId].options = optionId;
+            params[paramId].options.push(optionId);
+            //params.paramId.options = option;
           }
         }
       }
     
+      console.log('params: ', params);
       return params;
     }
        
@@ -362,16 +369,17 @@
     initActions(){
       const thisWidget = this;
 
-      thisWidget.input.addEventListener('change', function(){
-        thisWidget.setValue(thisWidget.input);
+      thisWidget.input.addEventListener('change', function(event){
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.input.value);
       });
 
-      thisWidget.linkDecrease.addEventListener('click', function(){
+      thisWidget.linkDecrease.addEventListener('click', function(event){
         event.preventDefault();
         thisWidget.setValue(thisWidget.value - 1);
       });
 
-      thisWidget.linkIncrease.addEventListener('click', function(){
+      thisWidget.linkIncrease.addEventListener('click', function(event){
         event.preventDefault();
         thisWidget.setValue(thisWidget.value + 1);
       });
@@ -404,10 +412,13 @@
     getElements(element){
       const thisCart = this;
 
-      thisCart.dom = {}
+      thisCart.dom = {};
+
 
       thisCart.dom.wrapper = element;
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+
+      thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
     }
 
     initActions(){
@@ -419,7 +430,14 @@
     }
 
     add(menuProduct){
-      //const thisCart = this;
+      const thisCart = this;
+
+      const generatedHTML = templates.cartProduct(menuProduct); //??
+
+      const createdDOM = utils.createDOMFromHTML(generatedHTML);
+
+      thisCart.dom.productList.appendChild(createdDOM);
+
 
       
       console.log('adding product: ', menuProduct);
@@ -427,6 +445,8 @@
     
 
   }
+
+  /* *** */
   
   const app = {
     initMenu: function(){
