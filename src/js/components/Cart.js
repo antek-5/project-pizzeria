@@ -55,7 +55,7 @@ class Cart{
 
     thisCart.dom.productList.addEventListener('remove', function(event){
       thisCart.remove(event.detail.cartProduct);
-      console.log('event: ', event);
+      //console.log('event: ', event);
     });
 
     thisCart.dom.form.addEventListener('submit', function(event){
