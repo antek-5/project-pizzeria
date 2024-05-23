@@ -2,6 +2,7 @@ import {classNames, select, settings} from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
+import HomePage from './components/HomePage.js';
 
 
 
@@ -25,6 +26,30 @@ const app = {
 
     thisApp.activatePage(pageMatchingHash);
 
+    thisApp.homeNavLinks = document.querySelectorAll(select.homePage.navLinks);
+    console.log(document.querySelector('.nav-links'));
+    console.log('thisApp.homeNavLinks', thisApp.homeNavLinks);
+    for(let link of thisApp.homeNavLinks){
+      link.addEventListener('click', function(event){
+        const clickedElement = this;
+        event.preventDefault();
+
+        /* get page id from href attribute */
+        const id = clickedElement.getAttribute('href').replace('#', '');
+
+        /* run thisApp.activatePage with that id */
+
+        console.log('id', id);
+        thisApp.activatePage(id);
+
+
+        /* change URL hash */
+        window.location.hash = '#/' + id;
+
+      });
+
+    }
+
     for(let link of thisApp.navLinks){
       link.addEventListener('click', function(event){
         const clickedElement = this;
@@ -35,6 +60,7 @@ const app = {
 
         /* run thisApp.activatePage with that id */
 
+        console.log('id', id);
         thisApp.activatePage(id);
 
 
@@ -56,7 +82,6 @@ const app = {
       // } else {
       //   page.classList.remove(classNames.pages.active);
       // }
-
       page.classList.toggle(classNames.pages.active, page.id == pageId);
 
 
@@ -67,7 +92,8 @@ const app = {
     for(let link of thisApp.navLinks){
       link.classList.toggle(classNames.nav.active, link.getAttribute('href') == '#' + pageId);
     }
-
+    
+    //console.log('pageId', pageId);
 
 
 
@@ -138,6 +164,8 @@ const app = {
 
 
     thisApp.initBooking();
+
+    thisApp.initHomePage();
   },
 
   initBooking: function(){
@@ -148,7 +176,15 @@ const app = {
     new Booking(bookingContainer);
 
 
-  }
+  },
+
+  initHomePage: function(){
+    const homePageContainer = document.querySelector(select.containerOf.homePage);
+
+    new HomePage(homePageContainer);
+
+  },
+
 };
 
 app.init();

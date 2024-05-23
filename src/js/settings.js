@@ -4,6 +4,8 @@ export const select = {
     cartProduct: '#template-cart-product', // CODE ADDED
 
     bookingWidget: '#template-booking-widget',
+
+    homePage: '#template-home-page',
   },
   containerOf: {
     menu: '#product-list',
@@ -11,6 +13,7 @@ export const select = {
 
     pages: '#pages',
     booking: '.booking-wrapper',
+    homePage: '.home-page-wrapper',
   },
   all: {
     menuProducts: '#product-list > .product',
@@ -82,6 +85,10 @@ export const select = {
     remove: '[href="#remove"]',
   },
   // CODE ADDED END
+
+  homePage: {
+    navLinks: '.nav-links a',
+  }
 };
 
 export const classNames = {
@@ -156,4 +163,6 @@ export const templates = {
 
 
   bookingWidget: Handlebars.compile(document.querySelector(select.templateOf.bookingWidget).innerHTML),
+
+  homePage: Handlebars.compile(document.querySelector(select.templateOf.homePage).innerHTML),
 };

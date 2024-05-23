@@ -16,10 +16,7 @@ class Booking{
         thisBooking.initWidgets();
         thisBooking.getData();
 
-        thisBooking.dom.submitButton.addEventListener('click', function(event){
-            event.preventDefault();
-            thisBooking.sendBooking();
-        })
+        
     }
 
     getData(){
@@ -154,14 +151,13 @@ class Booking{
         //console.log('thisBooking.dom.tables', thisBooking.dom.tables);
         for(let table of thisBooking.dom.tables){
             let tableId = table.getAttribute(settings.booking.tableIdAttribute);
-            if(!isNaN(tableId)){
-                tableId = parseInt(tableId);
-            }
 
             if(
+                !isNaN(tableId)
+                &&
                 !allAvailable
                 &&
-                thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId) > -1
+                thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId)
             ){
                 table.classList.add(classNames.booking.tableBooked);
             } else {
@@ -216,6 +212,11 @@ class Booking{
         thisBooking.dom.floorPlan.addEventListener('click', function(event){
             thisBooking.initTables(event);
         })
+
+        thisBooking.dom.submitButton.addEventListener('click', function(event){
+            event.preventDefault();
+            thisBooking.sendBooking();
+        })
         
     }
 
@@ -223,6 +224,8 @@ class Booking{
         const thisBooking = this;
 
         if(event.target.classList.contains('table')){
+
+            
 
             if(event.target.classList.contains('booked')){
 
@@ -234,11 +237,15 @@ class Booking{
                 if(event.target.classList.contains('selected')){
                     event.target.classList.remove('selected');
                 } else {
+                    for(let table of thisBooking.dom.tables){
+                        table.classList.remove('selected');
+                    }
                     event.target.classList.add('selected');
                     thisBooking.selectedTable.dataTable = dataTable;
                 }
 
             }
+            
 
         }
 
@@ -256,6 +263,7 @@ class Booking{
     }
 
     sendBooking(){
+
 
         const thisBooking = this;
 
@@ -277,7 +285,6 @@ class Booking{
         for(let input of startersCheckedInput){
             if(input.checked){
                 startersArray.push(input.value);
-                console.log('pushed');
             }
         }
 
