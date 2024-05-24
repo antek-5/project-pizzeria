@@ -1,12 +1,4 @@
-#pages {
-    > * {
-      display: none;
-    }
-  
-    > .active {
-      display: block;
-    }
-}
+
 
 .home-page-wrapper {
 
@@ -16,16 +8,10 @@
     border-bottom: 1px solid lighten($color-dark, 70%);
     border-radius: $radius;
 
+    
+    
 
     .home-page {
-
-        
-        
-        
-        
-
-        
-
 
 
         .navigation-section {
@@ -39,6 +25,8 @@
                 width: 100%;
 
 
+
+                
                 .link {
                     display: flex;
                     justify-content: center;
@@ -52,43 +40,101 @@
                     color: white;
                     text-decoration: none;
 
+                    
+
+
+                    .order-online, .book-a-table {
+                        height: 100%;
+                        width: 100%;
+                        border-radius: 5px;
+
+                        background-size: cover; /* Adjust to fit the container */
+                        background-position: center; /* Center the image */
+                        background-repeat: no-repeat; /* Prevent repeating */
+
+                        // display: flex;
+                        justify-content: center;
+                        // align-items: center;
+
+                        display: flex;
+                        flex-direction: column;
+                        //justify-content: space-between;
+                        align-items: center;
+
+                        h2 {
+                            position: relative;
+                            top: 28px;
+                            transition: all 800ms ease;
+                        }
+                        h3 {
+                            position: relative;
+                            top: -15px;
+                            transition: all 800ms ease;
+                        }
+
+                        transition: all 800ms ease;
+                    }
+                    .order-online:hover, .book-a-table:hover {
+                        h2 {
+                            top: 15px;
+                        }
+                    }
+
                     .order-online {
                         background-image: url('../images/imagesHome/pizza-1.jpg');
-                        height: 100%;
-                        width: 100%;
-                        border-radius: 3px;
-
-                        background-size: cover; /* Adjust to fit the container */
-                        background-position: center; /* Center the image */
-                        background-repeat: no-repeat; /* Prevent repeating */
-
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
                     }
-
                     .book-a-table {
                         background-image: url('../images/imagesHome/pizza-2.jpg');
-                        height: 100%;
-                        width: 100%;
-                        border-radius: 3px;
+                    }
+                   
+                    
+                    
+                    .hover-info {
+                        
+                        opacity: 0;
+                        
+                        
+                        color: white;
+                        font-size: 14px;
 
-                        background-size: cover; /* Adjust to fit the container */
-                        background-position: center; /* Center the image */
-                        background-repeat: no-repeat; /* Prevent repeating */
+                        position: relative;
+                        top: -30px;
 
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
+                        transition: all 800ms ease;
+
+                        
+                        
                     }
 
+                  
+                    
+                    
+                    
+
+                    
+                    transition: all 800ms ease;
                 }
 
-            }
+                .link:hover {
 
+                    .order-online, .book-a-table {
+
+                        .hover-info {
+                            
+                            opacity: 100;
+                            
+                        }
+
+                    }
+                    
+                    
+                }
+            
+            }
+            
             .ordering-hours {
 
-                border-radius: 3px;
+                border-radius: 5px;
 
                 margin: 3px;
                 display: flex;
@@ -97,7 +143,7 @@
                 text-align: center;
 
                 color: white;
-                background-color: lightcoral;
+                background-color: #ff6b6b;
             }
 
         }
@@ -105,23 +151,179 @@
         .carousel-section {
             
             margin: 3px;
-            margin-top: 30px;
+            margin-top: 60px;
 
-            height: 500px;
-            border-radius: 3px;
-            background-color: lightgray;
+            height: 260px;
+            border-radius: 5px;
 
-            // display: flex;
-            // justify-content: center;
-            // align-items: center;
 
             .main-carousel {
 
                 height: 100%;
 
+                .carousel-cell {
+
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    height: 100%;
+
+
+
+                    .carousel-img-wrapper {
+
+                        width: 32%;
+                        height: 80%;
+                        border-radius: 5px;
+
+                        position: relative;
+                        overflow: hidden;
+
+                        img {
+
+                            min-width: 100%;
+                            min-height: 100%;
+                            max-width: 100%;
+                            max-height: 100%;
+                            
+                            object-fit: cover;
+                        }
+                    }
+
+                    .carousel-rest-wrapper {
+
+                        width: 68%;
+                        padding: 0 50px;
+
+                    }
+
+                }
+
             }
 
         }
+
+        .gallery-section {
+            margin-top: 80px;
+
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+
+            height: 420px;
+            width: 100%;
+
+            //background-color: green;
+
+            .image-row {
+
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 48.5%;
+                //background-color: purple;
+
+
+                .image-container {
+
+                    width: 32%;
+                    height: 100%;
+                    background-color: gray;
+                    border-radius: 5px;
+
+                    position: relative;
+                    overflow: hidden;
+                    color: blue;
+
+                    a {
+                        //
+                        &::after {
+                            content: "\f004";
+                            font-family: "Font Awesome 5 Free";
+                            -moz-osx-font-smoothing: grayscale;
+                            -webkit-font-smoothing: antialiased;
+                            display: inline-block;
+                            font-style: normal;
+                            font-variant: normal;
+                            text-rendering: auto;
+                            line-height: 1;
+                            position: absolute;
+                            color: #ff6b6b;
+                            font-weight: 900;
+                            top: 72px;
+                            right: 72px;
+                            font-size: 50px;
+                            text-shadow: 0 0 20px rgba(0,0,0,0.2);
+                            opacity: 0;
+
+                            transition: all 800ms ease;
+                        }
+                        
+                        &:hover:after {
+                            opacity: 100;
+                        }
+                        //
+
+                        &:hover {
+
+                            opacity: 100;
+                                
+                            img {
+                                opacity: 0.5;
+                            }
+
+                            .icons-container {
+                                position: absolute;
+                                .gallery-link-button {
+                                    display: block;
+                                    
+                                }
+                            }
+
+                        }
+                        
+
+                        img {
+                        
+
+                            min-width: 100%;
+                            min-height: 100%;
+    
+                            max-width: 100%;
+                            max-height: 100%;
+                            
+                            object-fit: cover;
+                            transition: all 800ms ease;
+    
+                            
+                        }
+
+                    }
+
+                    
+                    
+
+            
+
+ 
+
+                }
+            }
+
+        }
+
+        .ig-link-wrapper {
+
+            margin-top: 30px;
+
+            .instagram-link {
+            
+                color: #ff6b6b;
+            }
+        }
+        
 
 
 

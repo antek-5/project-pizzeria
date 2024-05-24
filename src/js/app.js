@@ -27,8 +27,8 @@ const app = {
     thisApp.activatePage(pageMatchingHash);
 
     thisApp.homeNavLinks = document.querySelectorAll(select.homePage.navLinks);
-    console.log(document.querySelector('.nav-links'));
-    console.log('thisApp.homeNavLinks', thisApp.homeNavLinks);
+    //console.log(document.querySelector('.nav-links'));
+    //console.log('thisApp.homeNavLinks', thisApp.homeNavLinks);
     for(let link of thisApp.homeNavLinks){
       link.addEventListener('click', function(event){
         const clickedElement = this;
@@ -39,7 +39,7 @@ const app = {
 
         /* run thisApp.activatePage with that id */
 
-        console.log('id', id);
+        //console.log('id', id);
         thisApp.activatePage(id);
 
 
@@ -155,6 +155,8 @@ const app = {
     //console.log('templates:', templates);
 
     //
+    thisApp.initHomePage();
+
     thisApp.initPages();
     //
 
@@ -165,7 +167,7 @@ const app = {
 
     thisApp.initBooking();
 
-    thisApp.initHomePage();
+
   },
 
   initBooking: function(){

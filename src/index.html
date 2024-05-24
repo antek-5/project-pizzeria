@@ -83,14 +83,16 @@
 
         <div class="nav-links">
 
-          <a href="#/order" class="link">
+          <a href="#order" class="link">
             <div class="order-online">
               <h2>ORDER ONLINE</h2>
+              <h3 class="hover-info">Delicious food delivered to your door</h3>
             </div>
           </a>
-          <a href="#/booking" class="link">
+          <a href="#booking" class="link">
             <div class="book-a-table">
               <h2>BOOK A TABLE</h2>
+              <h3 class="hover-info">Book a table at our restaurant</h3>
             </div>
           </a>
 
@@ -105,15 +107,91 @@
 
       <!-- carusel section -->
       <div class="carousel-section">
-        <div class="main-carousel" data-flickity='{ "cellAlign": "left", "contain": true }'>
-          <div class="carousel-cell"></div>
-          <div class="carousel-cell"></div>
-          <div class="carousel-cell"></div>
+        <div class="main-carousel" data-flickity='{ "cellAlign": "left", "contain": true, "autoPlay": 3000, "prevNextButtons": false }'>
+          <div class="carousel-cell">
+            <div class="carousel-img-wrapper">
+              <img src="../images/imagesHome/pizza-3.jpg">
+            </div>
+            <div class="carousel-rest-wrapper">
+              <h3>AMAZING SERVICE!</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
+                Aliquam egestas viverra tortor, eu ullamcorper dui imperdiet nec. Nunc sed dolor at elit lobortis sodales.<br><br>
+                - Margaret Osborne</p>
+            </div>
+          </div>
+          <div class="carousel-cell">
+            <div class="carousel-img-wrapper">
+              <img src="../images/imagesHome/pizza-3.jpg">
+            </div>
+            <div class="carousel-rest-wrapper">
+              <h3>AMAZING SERVICE!</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
+                Aliquam egestas viverra tortor, eu ullamcorper dui imperdiet nec. Nunc sed dolor at elit lobortis sodales.<br><br>
+                - Margaret Osborne</p>
+            </div>
+          </div>
+          <div class="carousel-cell">
+            <div class="carousel-img-wrapper">
+              <img src="../images/imagesHome/pizza-3.jpg">
+            </div>
+            <div class="carousel-rest-wrapper">
+              <h3>AMAZING SERVICE!</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
+                Aliquam egestas viverra tortor, eu ullamcorper dui imperdiet nec. Nunc sed dolor at elit lobortis sodales.<br><br>
+                - Margaret Osborne</p>
+            </div>
+          </div>
         </div>
       </div>
       <!-- gallery section -->
-      <div>
+      <div class="gallery-section">
 
+        <div class="image-row">
+          <div class="image-container">
+            <a href="#">
+              <img src="../images/imagesHome/pizza-4.jpg">
+            </a>
+          </div>
+
+          <div class="image-container">
+            <a href="#">
+              <img src="../images/imagesHome/pizza-5.jpg">
+            </a>
+          </div>
+
+          <div class="image-container">
+            <a href="#">
+              <img src="../images/imagesHome/pizza-6.jpg">
+            </a>
+          </div>
+        </div>
+
+        <div class="image-row">
+
+          <div class="image-container">
+            <a href="#">
+              <img src="../images/imagesHome/pizza-7.jpg">
+            </a>
+          </div>
+  
+          <div class="image-container">
+            <a href="#">
+              <img src="../images/imagesHome/pizza-8.jpg">
+            </a>
+          </div>
+
+          <div class="image-container">
+            <a href="#">
+              <img src="../images/imagesHome/pizza-9.jpg">
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="ig-link-wrapper">
+        <a href="#" class="instagram-link">View more on Instagram</a>
       </div>
 
     </div>
@@ -294,6 +372,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
   <script src="vendor/range-slider.js" type="module"></script>
+  <script src="https://kit.fontawesome.com/2dcfd3b0d7.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   <script src="js/app.js" type="module"></script>
